@@ -1,0 +1,7 @@
+<!-- 	
+	<c:forEach items="${citylist}" var="member">
+	<tr>
+		<td>{member._name}</td>
+	</tr>
+	</c:forEach items>
+ -->	

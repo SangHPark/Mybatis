@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="myproject.CityMapper">
+	<resultMap type="City" id="CityResultMap">
+		<result property="_Name" column="NAME" />
+		<result property="_CountryCode" column="COUNTRYCODE" />
+		<result property="_District" column="DISTRICT" />
+		<result property="_Population" column="POPULATION" />
+	</resultMap>
+	
+	<select id="getCities" resultMap="CityResultMap">
+        SELECT * FROM world.city
+    </select>
+     <insert id="insertCities" parameterType="myproject.City" >
+        INSERT INTO world.city values(#{_Name},#{_Country},#{_District},#{Population})
+    </insert>
+    
+</mapper>

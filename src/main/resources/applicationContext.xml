@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	  <bean id="mybean" class="myproject.MyBean" init-method="startup" destroy-method="destroy">
+	    <property name="message" value="This is my First Bean"/>
+	    <property name="myDataSource" ref="mysql"/>
+	  </bean>
+	  
+	  <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	    <property name="url" value="jdbc:mysql://localhost:3306/world" />
+	    <property name="username" value="root" />
+	    <property name="password" value="shpark0601" />
+	  </bean>
+	
+	  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:config/mybatisV3-config.xml"/>
+	  </bean>
+	  
+	  <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	    <constructor-arg ref="sqlSessionFactory"/>
+	  </bean>	  
+
+<!--
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	    <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver"/>
+	    <property name="url" value="jdbc:jtds:sqlserver://127.0.0.1:1433;DatabaseName=MySQLDB"/>
+	    <property name="username" value="stevepark"/>
+	    <property name="password" value="realstupid"/>
+	</bean>
+
+	<bean id="mssql" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	    <property name="url" value="jdbc:jtds:sqlserver://localhost:1433/testdb;Database=MySQLDB"/>
+	    <property name="username" value="stevepark"/>
+	    <property name="password" value="realstupid"/>
+	</bean>
+-->	
+
+</beans>
