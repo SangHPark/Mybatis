@@ -21,7 +21,7 @@ ${citylist}.size()
 	</tr>
 	<c:forEach items="${citylist}" var="member">
 	<tr>
-		<td>${member.name}</td>
+		<td>${member._Name}</td>
 		<td>ABC</td>
 	</tr>
 	</c:forEach>

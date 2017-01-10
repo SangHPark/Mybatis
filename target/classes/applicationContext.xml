@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-<beans>
+	  <context:component-scan base-package="myproject" />
 
 	  <bean id="mybean" class="myproject.MyBean" init-method="startup" destroy-method="destroy">
 	    <property name="message" value="This is my First Bean"/>
@@ -17,13 +22,15 @@
 	
 	  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:config/mybatisV3-config.xml"/>
+<!-- 		<property name="configLocation" value="classpath:config/mybatisV3-config.xml"/>  -->
+		<property name="mapperLocations" value="classpath:myproject/CityMapper.xml"/>		
 	  </bean>
 	  
 	  <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 	    <constructor-arg ref="sqlSessionFactory"/>
 	  </bean>	  
 
+	  
 <!--
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 	    <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver"/>
